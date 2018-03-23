@@ -1,0 +1,65 @@
+<style>
+
+    body{
+        background-color: #DDA0DD
+    }
+</style>
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <!--        <div class="container">-->
+        <div class="navbar-header">
+            <div class="topDrop_registration" style="height: 120px">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#!/admin">
+                    <img src="images/heart.jpg" style=" width:100px;" alt=""/>
+                </a>
+                <button type="button" class="btn btn-md btn-primary" style="margin-left:1000px;" ng-click="refresh()">
+                    <span class="glyphicon glyphicon-refresh"></span> Refresh
+                </button>
+            </div>
+        </div>
+    </div> 
+    <!--    </div> -->
+</div> 
+<div class="container">
+    <h2>Promotions available</h2>
+
+    <button  class="btn btn-md btn-primary" style="margin-left:1000px;" ><a href="#!/addPromotions">Add Promotions</a>
+    </button>
+
+    <div class="table-responsive">       
+        <div class="table-responsive">          
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Promotion Name</th>
+                        <th>Promotion Description</th>
+                        <th>Promotion price</th>
+                        <th>Promotion category</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="promo in promotions">
+                        <td>{{ promo.name}}</td>
+                        <td>{{ promo.description}}</td>
+                        <td>{{ promo.price}}</td>
+                        <td>{{ promo.category}}</td>
+                         <td><a class="btn btn-primary a-btn-slide-text" ng-click="DeletePromotions(promo)">
+                        <span class="glyphicon glyphicon-remove"  aria-hidden="true"></span>
+                        <span><strong>Delete</strong></span></a></td> 
+                  
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

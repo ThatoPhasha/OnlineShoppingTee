@@ -1,0 +1,88 @@
+<style>
+
+    body{
+        background-color: #DDA0DD
+    }
+</style>
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="topDrop_registration" style="height: 120px">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#!/home">
+                        <img src="images/heart.jpg" style=" width:100px;" alt=""/>
+                    </a>
+
+                </div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+
+
+                </ul>  
+
+                <ul class="nav navbar-nav pull-right">
+
+                    <li class=""><a href="#!/logout">Logout</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div> 
+</div> 
+
+<div class="container">
+    <h2>View Orders</h2>
+
+    <div class="table-responsive">          
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Order Id</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Suburb</th>
+                    <th></th>
+                    <th></th>
+                    <th>Order Date</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="order in customerOrder">
+                    <td>{{order.custId}}</td>
+                    <td>{{order.orderId}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.price| currency : "R"}}</td>
+                    <td> {{order.status}}</td>
+
+                    <td> {{order.suburb}}</td>
+                    <td><div class="form-group">
+
+                            <div class="col-md-9">
+                                <select id="selectbasic" name="selectbasic" ng-model="status" class="form-control">
+                                    <option value="{{order.status}}">Delivery Complete</option>
+
+                                </select>
+                            </div>
+                        </div></td>
+                    <td> <a class="btn btn-success a-btn-slide-text" >
+                            <span class="glyphicon-glyphicon-ok-sign" aria-hidden="true"></span>
+                            <span><strong>Update Status</strong></span>            
+                        </a></td>
+
+                    <td>{{order.orderedDate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

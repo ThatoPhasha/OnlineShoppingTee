@@ -1,0 +1,252 @@
+<style>
+
+    body{
+        background-color: #DDA0DD
+    }
+
+</style>
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <div class="topDrop_registration" style="height: 120px">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#!/home">
+                            <img src="images/heart.jpg" style=" width:100px;" alt=""/>
+                        </a>
+                    </div>
+                </div>
+            </div> 
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#!/customerPromotions">See what's on promotion today!!!</a></li>  
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li class=""><a href="#!/logout">Logout</a></li>
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+
+    <button onclick="document.getElementById('id01').style.display = 'block'" class="btn btn-info" style="font-size: 12px;width: 150px;margin-left: 600px;font-weight: bold">My Basket : {{cart.length}}</button>
+</div>
+
+<div class="container">
+    <div class="product-block" ng-repeat="prod in products" style="width:250px; height: 340px;font-weight: bold;color: #004579">
+        <div class="card text-xs-center">  <img ng-src="prodImages/{{prod.image}}" style="width:120px; height: 150px;"/>
+            <h5 class="card-title" > {{prod.name}}</h5>
+<!--            <h5 class="card-title" > {{prod.prod_quantity - prod.quantity}}</h5>-->
+            <p class="card-text price" style="font-weight: bold">R{{ prod.price}}</p>
+            <button type="submit" class="btn btn-info" ng-click="addToCart(prod)()"  value="#!/registration" style="font-size: 12px;width: 150px;">Add To Cart</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="w3-container" style="color:#8B008B;">
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-animate-opacity w3-card-4">
+            <header class="w3-container w3-tomato" style="height:  100px;width: 0px; color:#DDA0DD; "> 
+
+
+                <button onclick="document.getElementById('id01').style.display = 'none'" 
+                        class="w3-button w3-large w3-display-topright glyphicon glyphicon-share-alt">Continue Shopping</button>
+                <img src="images/netFlorist.jpg" style="width:100px;" alt=""/>
+
+            </header><br/>
+
+
+            <div class="w3-container w3-animate-opacity">
+
+
+                <div class="table-responsive">          
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Subtotal</th> 
+                                <th></th>
+                                <th></th>
+                                <th>Quantity</th>
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="prodInCart in cart">
+                                <td> <img ng-src="prodImages/{{prodInCart.image}}" alt="" style="width: 60px; height: 50px;"/><br/>{{prodInCart.name}}</td>
+                                <td>{{prodInCart.quantity * prodInCart.price}}</td>
+                                <td>  <input class="btn btn-info" type="button" ng-click="removeProdCart(prodInCart)" value="-" style="font-size: 8px;height: 28px" /></td>
+                                <td> <input class="btn btn-primary" type="button" ng-click="incrementQuantity(prodInCart)" value="+" style="font-size: 8px;height: 28px" /></td>
+                                <td>{{prodInCart.quantity}}</td>
+
+
+                            </tr>
+                        <td ng-show="total !== 0.00">Total : {{total| currency : "R"}}</td>
+                        </tbody>
+                    </table>
+                </div>
+                <button onclick="document.getElementById('id02').style.display = 'block'" class="btn btn-md btn-info  " style="font-size: 12px;height: 25px;width: 100px;">Proceed</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Payment-->
+<div class="w3-container">
+    <div id="id02" class="w3-modal " >
+        <div class="w3-modal-content w3-animate-opacity" >
+            <header class="w3-container" style="height:  150px;width: 0px; color:#DDA0DD;"> 
+                <span onclick="document.getElementById('id02').style.display = 'none'" 
+                      class="w3-button w3-large w3-display-topright">Review Your Products List</span>
+                <img src="images/netFlorist.jpg" style="width:100px;" alt=""/>
+
+            </header><br/>
+            <div class="w3-container">
+                <div class="wrapper" style="margin-left: 30px;width: 340px">
+                    <select  ng-model="bank_details.bank_id">
+                        <option value="" selected="">----SELECT BANK----</option>
+                        <option value="capitec">Capitec Bank</option>
+                        <option value="standard">Standard Bank</option>
+                        <option value="nedbank">Nedbank</option>
+                        <option value="fnb">Fnb</option>
+                        <option value="absa">Absa</option>
+                    </select>
+                    <div class="wrapper" style="margin-left: 30px;width: 340px">
+                        <div class="form-group">
+
+                            <select  ng-model="bank_details.bank_id">
+                                <option value="" selected="">----Payment Method----</option>
+                                <option value="capitec">Paypal</option>
+                                <option value="standard">Credit</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+                <label style="font-size: 12px;margin-left: 30px">Card Number: </label>
+                <div class="form-group">
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="bankName" ng-model="bank.accNo" placeholder="09876545645" style="width: 340px"   required=""/>
+                    </div>
+                </div><br/>
+                <label style="font-size: 12px;margin-left: 30px"> Account Pin : </label>
+                <div class="form-group">
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="inputPassword" ng-model="bank.pin" placeholder="09876545645" style="width: 340px"   required=""/>
+                    </div>
+                    <div class="col-lg-10">Total : {{total| currency : "R"}}</div>
+                </div><br/>
+
+            </div>
+
+            <button onclick="document.getElementById('id04').style.display = 'block'" class="btn btn-md btn-info"   style="font-size: 12px;height: 25px;width:150px">Pay and Continue</button>
+        </div>
+    </div>
+</div>
+
+<!--    Delivery info-->
+<div class="w3-container">
+    <div id="id04" class="w3-modal " >
+        <div class="w3-modal-content w3-animate-opacity" >
+            <header class="w3-container" style="height:  120px;width: 0px; color:#DDA0DD;"> 
+                <span onclick="document.getElementById('id04').style.display = 'none'" 
+                      class="w3-button w3-large w3-display-topright">Review Your Payment Details</span>
+                <img src="images/netFlorist.jpg" style="width:100px;" alt=""/>
+            </header><br/>         
+            <label style="font-size: 12px;margin-left: 30px">House No</label>
+            <div class="form-group">
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" placeholder="House No" style="width: 340px"   required=""/>
+                </div>
+            </div><br/>
+            <label style="font-size: 12px;margin-left: 30px">Street name</label>
+            <div class="form-group">
+                <div class="col-lg-10">
+                    <input type="text" class="form-control"  placeholder="Street Name" style="width: 340px"   required=""/>
+                </div>
+            </div><br/>
+            <label style="font-size: 12px;margin-left: 30px">Suburb</label>
+            <div class="form-group">
+                <div class="col-lg-10">
+                    <input type="text" class="form-control"  placeholder="Suburb" style="width: 340px"   required=""/>
+                </div>
+            </div><br/>
+            <button onclick="document.getElementById('id03').style.display = 'block'" class="btn btn-md btn-info"   style="font-size: 12px;height: 25px;width:150px">Save and Continue</button>
+        </div>
+    </div>
+</div>           
+
+<div class="w3-container">
+    <div id="id03" class="w3-modal " >
+        <div class="w3-modal-content w3-animate-opacity" >
+            <header class="w3-container w3-tomato" style="height:  90px;width: 0px"> 
+                <span onclick="document.getElementById('id03').style.display = 'none'" 
+                      class="w3-button w3-large w3-display-topright">Continue Shopping</span>
+                <img src="images/netFlorist.jpg" style="width:100px;" alt=""/>
+
+            </header><br/>
+            <div class="w3-container">
+                <h1>
+                    You are about to Finish...Sure You Want To Process The Order?
+                </h1>
+
+            </div>
+
+            <button onclick="document.getElementById('id05').style.display = 'block'" type="submit" class="btn btn-success" ng-click="placeOrder()" >CHECK OUT</button>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="w3-container">
+    <div id="id05" class="w3-modal " >
+        <div class="w3-modal-content w3-animate-opacity" >
+            <header class="w3-container w3-tomato" style="height:  90px;width: 0px"> 
+                <span onclick="document.getElementById('id05').style.display = 'none'" 
+                      class="w3-button w3-large w3-display-topright"></span>
+                <img src="images/netFlorist.jpg" style="width:100px;" alt=""/>
+
+            </header><br/>
+            <div class="w3-container">
+                <div class="table-responsive">          
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Customer Id</th>
+                                <th>Quantity</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-show="order in customerOrder">
+                                <td>{{order.custId}}</td>
+                                <td>{{order.quantity}}</td>
+                                <td>R{{order.price}}</td>
+                                <td>{{order.status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,53 @@
+<style>
+
+    body{
+        background-color: #DDA0DD
+    }
+</style>
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="navbar-header">
+<div class="topDrop_registration" style="height: 120px">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#!/admin">
+                    <img src="images/heart.jpg" style=" width:100px;" alt=""/>
+                </a>
+            </div>
+        </div>
+    </div> 
+         </div> 
+    </div> 
+<div class="container">
+  <h2>Users Of The System</h2>
+                                                                                      
+  <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+          <th>Id</th>
+        <th>Firstname</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Username</th>
+<!--        <th>Password</th>-->
+      </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="cust in customers">
+         <td>{{ cust.id }}</td>
+        <td>{{ cust.firstname }}</td>
+        <td>{{ cust.surname }}</td>
+        <td>{{ cust.email }}</td>
+        <td>{{ cust.username }}</td>
+<!--        <td>{{ cust.password }}</td>-->
+    </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
